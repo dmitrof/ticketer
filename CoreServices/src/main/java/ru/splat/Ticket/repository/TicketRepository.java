@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Transactional
-public class BetRepository
+public class TicketRepository
 {
     @Autowired
     JdbcTemplate jdbcTemplate;

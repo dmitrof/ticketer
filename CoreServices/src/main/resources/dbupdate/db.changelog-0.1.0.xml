@@ -34,16 +34,17 @@
 
         <addPrimaryKey tableName="event" columnNames="id"/>
 
-        <createTable tableName="market">
+        <createTable tableName="place">
             <column name="id" type="integer"/>
             <column name="name" type="character varying(250)"/>
             <column name="event_id" type="integer"/>
+            <column name="max_seats" type="integer"/>
         </createTable>
 
-        <addPrimaryKey tableName="market" columnNames="id"/>
+        <addPrimaryKey tableName="place" columnNames="id"/>
 
         <addForeignKeyConstraint baseColumnNames="event_id"
-                                 baseTableName="market"
+                                 baseTableName="place"
                                  constraintName="fk_event_id"
                                  deferrable="true"
                                  initiallyDeferred="true"
@@ -58,22 +59,22 @@
             <column name="name" type="character varying(250)"/>
             <column name="current_koef" type="double"/>
             <column name="status" type="status"/>
-            <column name="market_id" type="integer"/>
+            <column name="place_id" type="integer"/>
             <column name="lim" type="integer"/>
             <column name="limit_time" type="bigint"/>
         </createTable>
 
         <addPrimaryKey tableName="outcome" columnNames="id"/>
 
-        <addForeignKeyConstraint baseColumnNames="market_id"
+        <addForeignKeyConstraint baseColumnNames="place_id"
                                  baseTableName="outcome"
-                                 constraintName="fk_market_id"
+                                 constraintName="fk_place_id"
                                  deferrable="true"
                                  initiallyDeferred="true"
                                  onDelete="RESTRICT"
                                  onUpdate="RESTRICT"
                                  referencedColumnNames="id"
-                                 referencedTableName="market"/>
+                                 referencedTableName="place"/>
 
         <createTable tableName="history_of_koef">
             <column name="outcome_id" type="integer"/>

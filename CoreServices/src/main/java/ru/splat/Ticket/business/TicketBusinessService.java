@@ -3,7 +3,7 @@ package ru.splat.Ticket.business;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.splat.Ticket.feautures.TicketInfo;
-import ru.splat.Ticket.repository.BetRepository;
+import ru.splat.Ticket.repository.TicketRepository;
 import ru.splat.facade.business.BusinessService;
 import ru.splat.kafka.feautures.TransactionResult;
 import ru.splat.messages.Response;
@@ -23,7 +23,7 @@ public class TicketBusinessService implements BusinessService<TicketInfo>
     private Logger LOGGER = getLogger(TicketBusinessService.class);
 
     @Autowired
-    BetRepository betRepository;
+    TicketRepository ticketRepository;
 
     @Override
     public List<TransactionResult> processTransactions(List<TicketInfo> transactionRequests)
@@ -62,8 +62,8 @@ public class TicketBusinessService implements BusinessService<TicketInfo>
     private Set<TransactionResult> addBet(List<TicketInfo> ticketInfoList)
     {
         LOGGER.info("Start Add Bet");
-        int sequence = betRepository.getCurrentSequenceVal();
-        betRepository.addBet(ticketInfoList);
+        int sequence = ticketRepository.getCurrentSequenceVal();
+        ticketRepository.addBet(ticketInfoList);
         LOGGER.info("Add bet array: ");
         LOGGER.info(Arrays.toString(ticketInfoList.toArray()));
         Set<TransactionResult> transactionalResult = new HashSet<>(ticketInfoList.size());
@@ -87,7 +87,7 @@ public class TicketBusinessService implements BusinessService<TicketInfo>
         LOGGER.info("Start fix state = " + state);
         LOGGER.info("Array for fix state = " + state + " : ");
         LOGGER.info(Arrays.toString(ticketInfoList.toArray()));
-        betRepository.fixBetState(ticketInfoList,state);
+        ticketRepository.fixBetState(ticketInfoList,state);
         LOGGER.info("Stop fix state = " + state);
         return ticketInfoList.stream().map(map -> new TransactionResult(
                 map.getTransactionId(),

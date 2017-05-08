@@ -8,7 +8,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 
-public class BetWrapper extends AbstractWrapper<BetRequest.Bet, TicketInfo>
+public class TicketWrapper extends AbstractWrapper<BetRequest.Bet, TicketInfo>
 {
 
     private Executor thread = Executors.newSingleThreadExecutor();

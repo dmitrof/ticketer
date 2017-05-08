@@ -34,7 +34,7 @@ public class EventRepository
 
     public void delete()
     {
-        jdbcTemplate.update("delete from outcome;delete from market; delete from event;");
+        jdbcTemplate.update("delete from outcome;delete from place; delete from event;");
     }
 
     public void insertEvent(Integer eventCount)
@@ -55,7 +55,7 @@ public class EventRepository
 
     public void insertMarket(int marketCount)
     {
-        String SQL_INSERT_MARKET= "INSERT INTO market (id,name,event_id) VALUES (?,?,?)";
+        String SQL_INSERT_MARKET= "INSERT INTO place (id,name,event_id) VALUES (?,?,?)";
         jdbcTemplate.batchUpdate(SQL_INSERT_MARKET, new BatchPreparedStatementSetter()
         {
             public void setValues(PreparedStatement ps, int i) throws SQLException
@@ -73,7 +73,7 @@ public class EventRepository
 
     public void insertOutcome(int outcomeCount)
     {
-        String SQL_INSERT_OUTCOME = "INSERT INTO outcome (id,name,current_koef, status, market_id, lim, limit_time) VALUES (?,?,?,CAST (? AS status),?,?,?)";
+        String SQL_INSERT_OUTCOME = "INSERT INTO outcome (id,name,current_koef, status, place_id, lim, limit_time) VALUES (?,?,?,CAST (? AS status),?,?,?)";
         jdbcTemplate.batchUpdate(SQL_INSERT_OUTCOME, new BatchPreparedStatementSetter()
         {
             public void setValues(PreparedStatement ps, int i) throws SQLException

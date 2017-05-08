@@ -44,7 +44,7 @@ public class EventRepository
             return marketInfo;
         };
 
-        String SQL_SELECT_PUNTER_LIMITS = "SELECT market.id, market.name,market.event_id FROM market WHERE event_id="+event_id;
+        String SQL_SELECT_PUNTER_LIMITS = "SELECT place.id, place.name, place.event_id FROM place WHERE event_id="+event_id;
         return  jdbcTemplate.query(SQL_SELECT_PUNTER_LIMITS, rm);
     }
 
@@ -56,11 +56,11 @@ public class EventRepository
             outcomeInfo.setId(rs.getInt("id"));
             outcomeInfo.setName(rs.getString("name"));
             outcomeInfo.setCoefficient(rs.getDouble("current_koef"));
-            outcomeInfo.setMarketId(rs.getInt("market_id"));
+            outcomeInfo.setMarketId(rs.getInt("place_id"));
             return outcomeInfo;
         };
 
-        String SQL_SELECT_PUNTER_LIMITS = "SELECT outcome.id, outcome.name, outcome.current_koef, outcome.market_id FROM outcome WHERE market_id="+market_id;
+        String SQL_SELECT_PUNTER_LIMITS = "SELECT outcome.id, outcome.name, outcome.current_koef, outcome.place_id FROM outcome WHERE place_id="+market_id;
         return  jdbcTemplate.query(SQL_SELECT_PUNTER_LIMITS, rm);
     }
 
