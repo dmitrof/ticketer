@@ -1,0 +1,15 @@
+syntax = "proto3";
+option java_package = "ru.splat.messages";
+option java_outer_classname = "Response";
+
+message ServiceResponse {
+  repeated int32 services = 1;
+  oneof attachment_oneof {
+     string stringAttachment = 2;
+     int64 longAttachment = 3;
+     double doubleAttachment = 4;
+     bool booleanAttachment = 5;
+  }
+  int32 result = 6;
+
+} 
