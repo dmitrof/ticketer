@@ -21,7 +21,7 @@
     </bean>
 
     <bean id="cleaningTableBetIdemp" class="ru.splat.facade.shedule.SheduleCleaningDB">
-        <property name="tableName" value="bet_idemp"/>
+        <property name="tableName" value="ticket_idemp"/>
         <property name="timeLimit" value="180000"/>
     </bean>
 

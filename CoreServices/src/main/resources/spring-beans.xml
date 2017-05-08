@@ -30,11 +30,11 @@
     </bean>
 
 
-    <bean id="betRepository" class="ru.splat.Bet.repository.BetRepository"/>
+    <bean id="betRepository" class="ru.splat.Ticket.repository.BetRepository"/>
     <bean id="betIdempRepository" class="ru.splat.facade.repository.ExactlyOnceRepositoryImpl">
-        <property name="tableName" value="bet_idemp"/>
+        <property name="tableName" value="ticket_idemp"/>
     </bean>
-    <bean id="betBusinessService" class="ru.splat.Bet.business.BetBusinessService"/>
+    <bean id="betBusinessService" class="ru.splat.Ticket.business.TicketBusinessService"/>
 
     <bean id="betService" class="ru.splat.facade.service.ServiceFacade">
         <property name="businessService" ref="betBusinessService"/>
@@ -52,7 +52,7 @@
         <property name="exactlyOnceRepository" ref="eventIdempRepository"/>
     </bean>
 
-    <bean id="betWrapper" class="ru.splat.Bet.wrapper.BetWrapper"
+    <bean id="betWrapper" class="ru.splat.Ticket.wrapper.BetWrapper"
           p:service-ref="betService"
     />
     <bean id="punterWrapper" class="ru.splat.Punter.wrapper.PunterWrapper"

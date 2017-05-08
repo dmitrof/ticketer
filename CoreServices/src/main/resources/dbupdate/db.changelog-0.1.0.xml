@@ -100,8 +100,8 @@
 
         <createTable tableName="ballance">
             <column name="sum" type="integer"/>
-            <column name="bets_count" type="integer"/>
-            <column name="bets_sum" type="integer"/>
+            <column name="tickets_count" type="integer"/>
+            <column name="tickets_sum" type="integer"/>
             <column name="punter_id" type="integer"/>
         </createTable>
         <addPrimaryKey tableName="ballance" columnNames="punter_id"/>
@@ -114,21 +114,21 @@
 
         <addPrimaryKey tableName="billing_idemp" columnNames="transaction_id"/>
 
-        <createTable tableName="bet">
+        <createTable tableName="ticket">
             <column autoIncrement="true" name="id" type="int"/>
             <column name="blob" type="bytea"/>
-            <column name="bet_state" type="state"/>
+            <column name="ticket_state" type="state"/>
         </createTable>
 
-        <addPrimaryKey tableName="bet" columnNames="id"/>
+        <addPrimaryKey tableName="ticket" columnNames="id"/>
 
-        <createTable tableName="bet_idemp">
+        <createTable tableName="ticket_idemp">
             <column name="transaction_id" type="bigint"/>
             <column name="blob" type="bytea"/>
             <column name="record_timestamp" type="bigint"/>
         </createTable>
 
-        <addPrimaryKey tableName="bet_idemp" columnNames="transaction_id"/>
+        <addPrimaryKey tableName="ticket_idemp" columnNames="transaction_id"/>
 
     </changeSet>
 
