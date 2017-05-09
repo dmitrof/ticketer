@@ -6,7 +6,7 @@ public class OutcomeInfo
 
     private int outcomeId;
     private String name;
-    private double coefficient;
+    private double price;
     private int marketId;
 
     public int getId() {
@@ -25,11 +25,11 @@ public class OutcomeInfo
         this.name = name;
     }
 
-    public double getCoefficient() {
-        return coefficient;
+    public double getPrice() {
+        return price;
     }
 
-    public void setCoefficient(double coefficient) {this.coefficient = coefficient;}
+    public void setPrice(double price) {this.price = price;}
 
     public int getMarketId() {
         return marketId;

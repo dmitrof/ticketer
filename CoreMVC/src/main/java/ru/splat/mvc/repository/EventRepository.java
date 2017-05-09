@@ -55,12 +55,13 @@ public class EventRepository
             OutcomeInfo outcomeInfo = new OutcomeInfo();
             outcomeInfo.setId(rs.getInt("id"));
             outcomeInfo.setName(rs.getString("name"));
-            outcomeInfo.setCoefficient(rs.getDouble("current_koef"));
+            outcomeInfo.setPrice(rs.getDouble("price"));
             outcomeInfo.setMarketId(rs.getInt("place_id"));
+            //System.out.println(outcomeInfo.getPrice());
             return outcomeInfo;
         };
 
-        String SQL_SELECT_PUNTER_LIMITS = "SELECT seat.id, seat.name, seat.current_koef, seat.place_id FROM seat WHERE place_id="+market_id;
+        String SQL_SELECT_PUNTER_LIMITS = "SELECT seat.id, seat.name, seat.price, seat.place_id FROM seat WHERE place_id="+market_id;
         return  jdbcTemplate.query(SQL_SELECT_PUNTER_LIMITS, rm);
     }
 

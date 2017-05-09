@@ -6,16 +6,16 @@ package ru.splat.messages.uptm.trmetadata.ticket;
 public class TicketDetail {
     private Integer seatId;
     private Integer eventId;
-    private Double coefficient;
+    private Double price;
     private Integer marketId;
 
     public TicketDetail() {
     }
 
-    public TicketDetail(Integer marketId, Integer eventId, Integer seatId, Double coefficient) {
+    public TicketDetail(Integer marketId, Integer eventId, Integer seatId, Double price) {
         this.seatId = seatId;
         this.eventId = eventId;
-        this.coefficient = coefficient;
+        this.price = price;
         this.marketId = marketId;
     }
 
@@ -24,7 +24,7 @@ public class TicketDetail {
         return "TicketDetail{" +
                 "seatId=" + seatId +
                 ", eventId=" + eventId +
-                ", coefficient=" + coefficient +
+                ", price=" + price +
                 ", marketId=" + marketId +
                 '}';
     }
@@ -35,8 +35,8 @@ public class TicketDetail {
     public Integer getEventId() {
         return eventId;
     }
-    public Double getCoefficient() {
-        return coefficient;
+    public Double getPrice() {
+        return price;
     }
 
     public Integer getMarketId() {
@@ -51,8 +51,8 @@ public class TicketDetail {
         this.eventId = eventId;
     }
 
-    public void setCoefficient(Double coefficient) {
-        this.coefficient = coefficient;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public void setMarketId(Integer marketId) {

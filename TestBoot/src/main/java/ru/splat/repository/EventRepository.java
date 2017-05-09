@@ -16,7 +16,7 @@ public class EventRepository
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private static final double CURRENT_KOEF = 1.5;
+    private static final double AVERAGE_PRICE = 100;
     private static final String STATUS = "NOT DESIGNED";
     private static final int LIMIT = ((Constant.PUNTER_COUNT2 - Constant.PUNTER_COUNT1) * 8)/10;
     private static final long LIMIT_TIME = 180000;
@@ -72,14 +72,14 @@ public class EventRepository
 
     public void insertSeat(int outcomeCount)
     {
-        String SQL_INSERT_OUTCOME = "INSERT INTO seat (id,name,current_koef, status, place_id, lim, limit_time) VALUES (?,?,?,CAST (? AS status),?,?,?)";
+        String SQL_INSERT_OUTCOME = "INSERT INTO seat (id,name,price, status, place_id, lim, limit_time) VALUES (?,?,?,CAST (? AS status),?,?,?)";
         jdbcTemplate.batchUpdate(SQL_INSERT_OUTCOME, new BatchPreparedStatementSetter()
         {
             public void setValues(PreparedStatement ps, int i) throws SQLException
             {
                 ps.setInt(1, i);
                 ps.setString(2, "Место №" + (i % Constant.SEAT_COUNT)+ " ");
-                ps.setDouble(3,CURRENT_KOEF);
+                ps.setDouble(3, AVERAGE_PRICE);
                 ps.setString(4, STATUS);
                 ps.setInt(5,i/Constant.SEAT_COUNT);
                 ps.setInt(6,LIMIT );

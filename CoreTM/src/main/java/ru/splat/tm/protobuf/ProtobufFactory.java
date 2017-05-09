@@ -40,7 +40,7 @@ public  class ProtobufFactory{
             //BetRequest.Bet message;
             Set betOutcomes = (task.getTicketDetails().stream()
                     .map(betOutcome ->  BetRequest.Bet.BetOutcome.newBuilder()
-                                .setCoefficient(betOutcome.getCoefficient())
+                                .setCoefficient(betOutcome.getPrice())
                                 .setEventId(betOutcome.getEventId())
                                 .setId(betOutcome.getSeatId())
                                 .build()

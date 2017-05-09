@@ -3,11 +3,11 @@ function BetRequest(bet, userId, ticketDetails) {
     this.userId = userId;
     this.ticketDetails = ticketDetails;
 }
-function TicketDetail(marketId, eventId, seatId, coefficient) {
+function TicketDetail(marketId, eventId, seatId, price) {
     this.marketId = marketId;
     this.eventId = eventId;
     this.seatId = seatId;
-    this.coefficient = coefficient;
+    this.price = price;
 }
 
 var app = angular.module('myApp', []);
@@ -45,7 +45,7 @@ app.controller('customersCtrl', function ($http, $interval, $timeout) {
                 ctrl.selects[key].marketId,
                 key,
                 ctrl.selects[key].id,
-                ctrl.selects[key].coefficient
+                ctrl.selects[key].price
             );
             ticketDetails.push(ticketDetail);
         }

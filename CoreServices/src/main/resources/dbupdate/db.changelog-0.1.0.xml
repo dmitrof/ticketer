@@ -57,7 +57,7 @@
         <createTable tableName="seat">
             <column name="id" type="integer"/>
             <column name="name" type="character varying(250)"/>
-            <column name="current_koef" type="double"/>
+            <column name="price" type="double"/>
             <column name="status" type="status"/>
             <column name="place_id" type="integer"/>
             <column name="lim" type="integer"/>
