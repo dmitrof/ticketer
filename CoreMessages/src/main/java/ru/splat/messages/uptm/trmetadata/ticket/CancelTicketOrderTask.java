@@ -1,21 +1,21 @@
-package ru.splat.messages.uptm.trmetadata.bet;
+package ru.splat.messages.uptm.trmetadata.ticket;
 
 import ru.splat.messages.conventions.ServicesEnum;
 import ru.splat.messages.conventions.TaskTypesEnum;
-import ru.splat.messages.proxyup.bet.BetInfo;
+import ru.splat.messages.proxyup.ticket.TicketInfo;
 import ru.splat.messages.uptm.trmetadata.LocalTask;
 
 /**
  * Created by Дмитрий on 04.02.2017.
  */
-public class CancelBetTask extends LocalTask {
+public class CancelTicketOrderTask extends LocalTask {
     private final Long betId;
 
     public Long getBetId() {
         return betId;
     }
 
-    public CancelBetTask(Long betId, Long time) {
+    public CancelTicketOrderTask(Long betId, Long time) {
         super(time);
         this.betId = betId;
     }
@@ -30,13 +30,13 @@ public class CancelBetTask extends LocalTask {
         return ServicesEnum.BetService;
     }
 
-    public static CancelBetTask create(BetInfo betInfo) {
-        return new CancelBetTask(betInfo.getBetId(), System.currentTimeMillis());
+    public static CancelTicketOrderTask create(TicketInfo ticketInfo) {
+        return new CancelTicketOrderTask(ticketInfo.getBetId(), System.currentTimeMillis());
     }
 
     @Override
     public String toString() {
-        return "CancelBetTask{" +
+        return "CancelTicketOrderTask{" +
                 "betId=" + betId +
                 "} ";
     }

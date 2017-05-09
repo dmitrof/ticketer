@@ -49,7 +49,7 @@ public class EventInfo implements TransactionRequest
                 "transactionId=" + transactionId +
                 ", localTask=" + localTask +
                 ", services=" + services +
-                ", outcomes=" + outcomes +
+                ", seats=" + outcomes +
                 ", time=" + time +
                 '}';
     }

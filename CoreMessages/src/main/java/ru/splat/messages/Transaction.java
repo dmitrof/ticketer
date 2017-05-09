@@ -1,6 +1,6 @@
 package ru.splat.messages;
 
-import ru.splat.messages.proxyup.bet.BetInfo;
+import ru.splat.messages.proxyup.ticket.TicketInfo;
 
 /**
  * Wrapper class for Transaction.
@@ -8,7 +8,7 @@ import ru.splat.messages.proxyup.bet.BetInfo;
 public class Transaction {
     //TODO: change to range of identifiers
     private State state;
-    private BetInfo betInfo;
+    private TicketInfo ticketInfo;
     private Long lowerBound;
     private Long upperBound;
     private Long current;
@@ -38,8 +38,8 @@ public class Transaction {
         this.current = current;
     }
 
-    public BetInfo getBetInfo() {
-        return betInfo;
+    public TicketInfo getTicketInfo() {
+        return ticketInfo;
     }
 
     public State getState() {
@@ -50,8 +50,8 @@ public class Transaction {
         this.state = state;
     }
 
-    public void setBetInfo(BetInfo betInfo) {
-        this.betInfo = betInfo;
+    public void setTicketInfo(TicketInfo ticketInfo) {
+        this.ticketInfo = ticketInfo;
     }
 
     public void nextState(State state) {
@@ -71,7 +71,7 @@ public class Transaction {
     public String toString() {
         return "Transaction{" +
                 "state=" + state +
-                ", betInfo=" + betInfo +
+                ", ticketInfo=" + ticketInfo +
                 ", lowerBound=" + lowerBound +
                 ", upperBound=" + upperBound +
                 ", current=" + current +
@@ -91,7 +91,7 @@ public class Transaction {
 
         public Builder of(Transaction tr) {
             state(tr.state);
-            betInfo(tr.betInfo);
+            betInfo(tr.ticketInfo);
             lower(tr.lowerBound);
             upper(tr.upperBound);
             current(tr.current);
@@ -103,8 +103,8 @@ public class Transaction {
             return this;
         }
 
-        public Builder betInfo(BetInfo betInfo) {
-            transaction.betInfo = betInfo;
+        public Builder betInfo(TicketInfo ticketInfo) {
+            transaction.ticketInfo = ticketInfo;
             return this;
         }
 

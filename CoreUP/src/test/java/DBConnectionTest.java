@@ -4,7 +4,7 @@
 //import ru.splat.db.DBConnection;
 //import ru.splat.messages.Transaction;
 //import ru.splat.messages.conventions.ServiceResult;
-//import ru.splat.messages.proxyup.bet.BetInfo;
+//import ru.splat.messages.proxyup.bet.TicketInfo;
 //import ru.splat.messages.uptm.trstate.ServiceResponse;
 //import ru.splat.messages.uptm.trstate.TransactionState;
 //import scala.concurrent.duration.Duration;
@@ -63,11 +63,11 @@
 //    }
 
 //    private static Transaction testTransaction(Integer userId) {
-//        BetInfo betInfo = new BetInfo();
+//        TicketInfo betInfo = new TicketInfo();
 //        betInfo.setUserId(userId);
 //        betInfo.setBet(2);
 //        betInfo.setSelectionsId(new HashSet<>());
-//        betInfo.setBetOutcomes(new HashSet<>());
+//        betInfo.setTicketDetails(new HashSet<>());
 //        return Transaction.Builder.builder()
 //                .betInfo(betInfo)
 //                .state(Transaction.State.COMPLETED)

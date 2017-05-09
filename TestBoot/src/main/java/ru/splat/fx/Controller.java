@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.splat.Constant;
-import ru.splat.messages.proxyup.bet.NewResponseClone;
+import ru.splat.messages.proxyup.ticket.NewResponseClone;
 import ru.splat.service.EventDefaultDataService;
 import ru.splat.task.RequestTask;
 import ru.splat.task.StateRequestTask;

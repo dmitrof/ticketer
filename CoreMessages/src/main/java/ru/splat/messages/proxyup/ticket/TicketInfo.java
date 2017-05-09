@@ -1,27 +1,27 @@
-package ru.splat.messages.proxyup.bet;
+package ru.splat.messages.proxyup.ticket;
 
-import ru.splat.messages.uptm.trmetadata.bet.BetOutcome;
+import ru.splat.messages.uptm.trmetadata.ticket.TicketDetail;
 
 import java.util.Set;
 
 /**
  * Information about new bet.
  */
-public class BetInfo {
+public class TicketInfo {
     private Long betId = -1L; //temporary decision
     private Integer userId;
     private Integer bet;
-    private Set<BetOutcome> betOutcomes;
+    private Set<TicketDetail> ticketDetails;
     private Set<Integer> selectionsId;
 
-    public BetInfo() {
+    public TicketInfo() {
     }
 
-    public BetInfo(Long betId, Integer userId, Integer bet, Set<BetOutcome> betOutcomes) {
+    public TicketInfo(Long betId, Integer userId, Integer bet, Set<TicketDetail> ticketDetails) {
         this.betId = betId;
         this.userId = userId;
         this.bet = bet;
-        this.betOutcomes = betOutcomes;
+        this.ticketDetails = ticketDetails;
     }
 
     public Integer getBet() {
@@ -40,12 +40,12 @@ public class BetInfo {
         this.bet = bet;
     }
 
-    public Set<BetOutcome> getBetOutcomes() {
-        return betOutcomes;
+    public Set<TicketDetail> getTicketDetails() {
+        return ticketDetails;
     }
 
-    public void setBetOutcomes(Set<BetOutcome> betOutcomes) {
-        this.betOutcomes = betOutcomes;
+    public void setTicketDetails(Set<TicketDetail> ticketDetails) {
+        this.ticketDetails = ticketDetails;
     }
 
     public Set<Integer> getSelectionsId() {
@@ -66,11 +66,11 @@ public class BetInfo {
 
     @Override
     public String toString() {
-        return "BetInfo{" +
+        return "TicketInfo{" +
                 "betId=" + betId +
                 ", userId=" + userId +
                 ", bet=" + bet +
-                ", betOutcomes=" + betOutcomes +
+                ", ticketDetails=" + ticketDetails +
                 ", selectionsId=" + selectionsId +
                 '}';
     }

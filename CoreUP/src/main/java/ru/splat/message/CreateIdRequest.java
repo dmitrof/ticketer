@@ -1,25 +1,25 @@
 package ru.splat.message;
 
-import ru.splat.messages.proxyup.bet.BetInfo;
+import ru.splat.messages.proxyup.ticket.TicketInfo;
 
 /**
  * Message from receiver to id_generator.
  */
 public class CreateIdRequest implements InnerMessage {
-    private final BetInfo betInfo;
+    private final TicketInfo ticketInfo;
 
-    public CreateIdRequest(BetInfo betInfo) {
-        this.betInfo = betInfo;
+    public CreateIdRequest(TicketInfo ticketInfo) {
+        this.ticketInfo = ticketInfo;
     }
 
-    public BetInfo getBetInfo() {
-        return betInfo;
+    public TicketInfo getTicketInfo() {
+        return ticketInfo;
     }
 
     @Override
     public String toString() {
         return "CreateIdRequest{" +
-                "betInfo=" + betInfo +
+                "ticketInfo=" + ticketInfo +
                 '}';
     }
 }

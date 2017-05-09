@@ -2,7 +2,7 @@ package ru.splat.messages.uptm.trmetadata.punter;
 
 import ru.splat.messages.conventions.ServicesEnum;
 import ru.splat.messages.conventions.TaskTypesEnum;
-import ru.splat.messages.proxyup.bet.BetInfo;
+import ru.splat.messages.proxyup.ticket.TicketInfo;
 import ru.splat.messages.uptm.trmetadata.LocalTask;
 
 /**
@@ -32,8 +32,8 @@ public class CancelPunterLimitsTask extends LocalTask {
 
     }
 
-    public static CancelPunterLimitsTask create(BetInfo betInfo) {
-        return new CancelPunterLimitsTask(betInfo.getUserId(), System.currentTimeMillis());
+    public static CancelPunterLimitsTask create(TicketInfo ticketInfo) {
+        return new CancelPunterLimitsTask(ticketInfo.getUserId(), System.currentTimeMillis());
     }
 
     @Override

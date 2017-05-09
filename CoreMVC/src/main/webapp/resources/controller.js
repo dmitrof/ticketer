@@ -1,12 +1,12 @@
-function BetRequest(bet, userId, betOutcomes) {
+function BetRequest(bet, userId, ticketDetails) {
     this.bet = bet;
     this.userId = userId;
-    this.betOutcomes = betOutcomes;
+    this.ticketDetails = ticketDetails;
 }
-function BetOutcome(marketId, eventId, outcomeId, coefficient) {
+function TicketDetail(marketId, eventId, seatId, coefficient) {
     this.marketId = marketId;
     this.eventId = eventId;
-    this.outcomeId = outcomeId;
+    this.seatId = seatId;
     this.coefficient = coefficient;
 }
 
@@ -38,19 +38,19 @@ app.controller('customersCtrl', function ($http, $interval, $timeout) {
         ctrl.buttonDisabled = true;
 
 
-        var betOutcomes = [];
+        var ticketDetails = [];
         for (var key in ctrl.selects) {
             if (key != null)
-              var betOutcome = new BetOutcome(
+              var ticketDetail = new TicketDetail(
                 ctrl.selects[key].marketId,
                 key,
                 ctrl.selects[key].id,
                 ctrl.selects[key].coefficient
             );
-            betOutcomes.push(betOutcome);
+            ticketDetails.push(ticketDetail);
         }
 
-        var betRequest = new BetRequest(  ctrl.sum,ctrl.userId, betOutcomes);
+        var betRequest = new BetRequest(  ctrl.sum,ctrl.userId, ticketDetails);
 
         console.log(betRequest);
         $http.post("/SpringMVC/dobet", betRequest).then(function (response) {

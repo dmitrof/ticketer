@@ -157,7 +157,7 @@ public class UP {
         int size = receivers.size();
 
         recoverLists = trList.stream().collect(Collectors.groupingBy(
-                transaction -> receivers.get(transaction.getBetInfo().getUserId() % size)
+                transaction -> receivers.get(transaction.getTicketInfo().getUserId() % size)
         ));
 
         return recoverLists.entrySet()

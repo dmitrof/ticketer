@@ -4,10 +4,10 @@ package ru.splat.service;
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import ru.splat.Constant;
-import ru.splat.messages.proxyup.bet.BetInfo;
-import ru.splat.messages.proxyup.bet.NewResponse;
-import ru.splat.messages.proxyup.bet.NewResponseClone;
-import ru.splat.messages.uptm.trmetadata.bet.BetOutcome;
+import ru.splat.messages.proxyup.ticket.TicketInfo;
+import ru.splat.messages.proxyup.ticket.NewResponseClone;
+import ru.splat.messages.uptm.trmetadata.ticket.TicketDetail;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
@@ -15,7 +15,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.Supplier;
 
 public class BootService
 {
@@ -29,7 +28,7 @@ public class BootService
         this.punterId = punterId;
     }
 
-    private BetInfo generateBet()
+    private TicketInfo generateBet()
     {
 
         int eventId1 = ThreadLocalRandom.current().nextInt(Constant.EVENT_COUNT - 1);
@@ -40,16 +39,16 @@ public class BootService
             eventId2 = ThreadLocalRandom.current().nextInt(Constant.EVENT_COUNT);
         }
 
-        int outcomeId1 = ThreadLocalRandom.current().nextInt(Constant.OUTCOME_COUNT-1) + eventId1*Constant.MARKET_COUNT*Constant.OUTCOME_COUNT;
-        int outcomeId2 = ThreadLocalRandom.current().nextInt(Constant.OUTCOME_COUNT-1) + eventId2*Constant.MARKET_COUNT*Constant.OUTCOME_COUNT;
+        int outcomeId1 = ThreadLocalRandom.current().nextInt(Constant.SEAT_COUNT -1) + eventId1*Constant.PLACE_COUNT *Constant.SEAT_COUNT;
+        int outcomeId2 = ThreadLocalRandom.current().nextInt(Constant.SEAT_COUNT -1) + eventId2*Constant.PLACE_COUNT *Constant.SEAT_COUNT;
 
-        BetOutcome betOutcome1 = new BetOutcome(null,eventId1,outcomeId1,Math.random() + 1);
-        BetOutcome betOutcome2 = new BetOutcome(null,eventId2,outcomeId2,Math.random() + 1);
-        Set<BetOutcome> set = new HashSet<>(2);
-        set.add(betOutcome1);
-        set.add(betOutcome2);
-        BetInfo betInfo = new BetInfo(-1L,punterId, ThreadLocalRandom.current().nextInt(Constant.BET_SUM) + 50 ,set);
-        return betInfo;
+        TicketDetail ticketDetail1 = new TicketDetail(null,eventId1,outcomeId1,Math.random() + 1);
+        TicketDetail ticketDetail2 = new TicketDetail(null,eventId2,outcomeId2,Math.random() + 1);
+        Set<TicketDetail> set = new HashSet<>(2);
+        set.add(ticketDetail1);
+        set.add(ticketDetail2);
+        TicketInfo ticketInfo = new TicketInfo(-1L,punterId, ThreadLocalRandom.current().nextInt(Constant.AVERAGE_SUM) + 50 ,set);
+        return ticketInfo;
     }
 
 
@@ -63,8 +62,8 @@ public class BootService
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/json");
 
-        BetInfo betInfo = generateBet();
-        String json = g.toJson(betInfo);
+        TicketInfo ticketInfo = generateBet();
+        String json = g.toJson(ticketInfo);
         LOGGER.info("JSON for Server: " + json);
 
 

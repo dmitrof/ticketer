@@ -10,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 public class EventRepository
 {
@@ -34,7 +33,7 @@ public class EventRepository
 
     public void delete()
     {
-        jdbcTemplate.update("delete from outcome;delete from place; delete from event;");
+        jdbcTemplate.update("delete from seat;delete from place; delete from event;");
     }
 
     public void insertEvent(Integer eventCount)
@@ -45,7 +44,7 @@ public class EventRepository
             public void setValues(PreparedStatement ps, int i) throws SQLException
             {
                 ps.setInt(1, i);
-                ps.setString(2, i + " ");
+                ps.setString(2, "Событиё " + i + " ");
             }
             public int getBatchSize() {
                 return eventCount;
@@ -53,7 +52,7 @@ public class EventRepository
         });
     }
 
-    public void insertMarket(int marketCount)
+    public void insertPlace(int placeCount)
     {
         String SQL_INSERT_MARKET= "INSERT INTO place (id,name,event_id) VALUES (?,?,?)";
         jdbcTemplate.batchUpdate(SQL_INSERT_MARKET, new BatchPreparedStatementSetter()
@@ -61,28 +60,28 @@ public class EventRepository
             public void setValues(PreparedStatement ps, int i) throws SQLException
             {
                 ps.setInt(1, i);
-                ps.setString(2, i + " ");
-                ps.setInt(3, i/Constant.MARKET_COUNT);
+                ps.setString(2, "Стадион " + i + " ");
+                ps.setInt(3, i/Constant.PLACE_COUNT);
             }
 
             public int getBatchSize() {
-                return marketCount;
+                return placeCount;
             }
         });
     }
 
-    public void insertOutcome(int outcomeCount)
+    public void insertSeat(int outcomeCount)
     {
-        String SQL_INSERT_OUTCOME = "INSERT INTO outcome (id,name,current_koef, status, place_id, lim, limit_time) VALUES (?,?,?,CAST (? AS status),?,?,?)";
+        String SQL_INSERT_OUTCOME = "INSERT INTO seat (id,name,current_koef, status, place_id, lim, limit_time) VALUES (?,?,?,CAST (? AS status),?,?,?)";
         jdbcTemplate.batchUpdate(SQL_INSERT_OUTCOME, new BatchPreparedStatementSetter()
         {
             public void setValues(PreparedStatement ps, int i) throws SQLException
             {
                 ps.setInt(1, i);
-                ps.setString(2, i + " ");
+                ps.setString(2, "Место №" + (i % Constant.SEAT_COUNT)+ " ");
                 ps.setDouble(3,CURRENT_KOEF);
                 ps.setString(4, STATUS);
-                ps.setInt(5,i/Constant.OUTCOME_COUNT);
+                ps.setInt(5,i/Constant.SEAT_COUNT);
                 ps.setInt(6,LIMIT );
                 ps.setLong(7, LIMIT_TIME);
             }

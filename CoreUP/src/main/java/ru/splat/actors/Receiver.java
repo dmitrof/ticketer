@@ -9,9 +9,9 @@ import akka.util.Timeout;
 import ru.splat.db.Bounds;
 import ru.splat.message.*;
 import ru.splat.messages.Transaction;
-import ru.splat.messages.proxyup.bet.BetInfo;
-import ru.splat.messages.proxyup.bet.NewRequest;
-import ru.splat.messages.proxyup.bet.NewResponse;
+import ru.splat.messages.proxyup.ticket.TicketInfo;
+import ru.splat.messages.proxyup.ticket.NewRequest;
+import ru.splat.messages.proxyup.ticket.NewResponse;
 import ru.splat.messages.proxyup.check.CheckRequest;
 import ru.splat.messages.proxyup.check.CheckResponse;
 import ru.splat.messages.proxyup.check.CheckResult;
@@ -94,8 +94,8 @@ public class Receiver extends LoggingActor {
     private void processNewRequest(NewRequest message) {
         log.info("Processing NewRequest: " + message.toString());
 
-        BetInfo betInfo = message.getBetInfo();
-        Integer userId = betInfo.getUserId();
+        TicketInfo ticketInfo = message.getTicketInfo();
+        Integer userId = ticketInfo.getUserId();
         boolean alreadyActive = userIds.contains(userId);
 
         if(alreadyActive) {
@@ -108,7 +108,7 @@ public class Receiver extends LoggingActor {
 
             userIds.add(userId);
             current.put(userId, sender());
-            idGenerator.tell(new CreateIdRequest(betInfo), self());
+            idGenerator.tell(new CreateIdRequest(ticketInfo), self());
         }
     }
 
@@ -126,7 +126,7 @@ public class Receiver extends LoggingActor {
         List<Future<Object>> futures = new ArrayList<>();
 
         for(Transaction transaction: transactions) {
-            if(!userIds.contains(transaction.getBetInfo().getUserId())) {
+            if(!userIds.contains(transaction.getTicketInfo().getUserId())) {
                 futures.add(recoverTransaction(transaction));
             } else {
                 //TODO: answer back to user
@@ -166,7 +166,7 @@ public class Receiver extends LoggingActor {
     private void processTransactionReady(Transaction transaction) {
         log.info("Process TransactionReady: " + transaction.toString());
 
-        Integer userId = transaction.getBetInfo().getUserId();
+        Integer userId = transaction.getTicketInfo().getUserId();
         Long trId = transaction.getLowerBound();
 
         startTransaction(transaction);
@@ -200,7 +200,7 @@ public class Receiver extends LoggingActor {
     private void processRequestResult(Transaction transaction) {
         log.info("Process RequestResult: " + transaction.toString());
 
-        freeUser(transaction.getBetInfo().getUserId());
+        freeUser(transaction.getTicketInfo().getUserId());
         saveState(transaction);
     }
 

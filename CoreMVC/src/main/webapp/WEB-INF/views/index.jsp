@@ -19,8 +19,8 @@
     <button ng-click="$ctrl.buttonClick();" ng-disabled = "$ctrl.buttonDisabled" ng-model="$ctrl.buttonDisabled" >Do bet</button>
     <br>
     <br>
-    Сумма ставки: <input type="number" ng-model="$ctrl.sum" maxlength="6" required>
-    Id игрока: <input type="number" ng-model="$ctrl.userId" maxlength="10" required>
+    Стоимость билета: <input type="number" ng-model="$ctrl.sum" maxlength="6" required>
+    Id пользователя: <input type="number" ng-model="$ctrl.userId" maxlength="10" required>
     </div>
     <div class="event-section" ng-repeat="event in $ctrl.languageSettings.eventInfoList" ng-if="$ctrl.languageSettings.eventMap[event.id].length">
         <div class="event-name">{{event.name}}</div>

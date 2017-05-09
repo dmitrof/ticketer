@@ -7,13 +7,13 @@ import ru.splat.messages.EventRequest;
 import ru.splat.messages.PunterRequest;
 import ru.splat.messages.conventions.ServicesEnum;
 import ru.splat.messages.uptm.trmetadata.LocalTask;
-import ru.splat.messages.uptm.trmetadata.bet.AddBetTask;
-import ru.splat.messages.uptm.trmetadata.bet.CancelBetTask;
-import ru.splat.messages.uptm.trmetadata.bet.FixBetTask;
+import ru.splat.messages.uptm.trmetadata.ticket.AddTicketOrderTask;
+import ru.splat.messages.uptm.trmetadata.ticket.CancelTicketOrderTask;
+import ru.splat.messages.uptm.trmetadata.ticket.FixTicketOrderTask;
 import ru.splat.messages.uptm.trmetadata.billing.BillingWithdrawTask;
 import ru.splat.messages.uptm.trmetadata.billing.CancelWithdrawTask;
-import ru.splat.messages.uptm.trmetadata.event.AddSelectionLimitsTask;
-import ru.splat.messages.uptm.trmetadata.event.CancelSelectionLimitsTask;
+import ru.splat.messages.uptm.trmetadata.event.ReserveSeatTask;
+import ru.splat.messages.uptm.trmetadata.event.CancelReserveSeatTask;
 import ru.splat.messages.uptm.trmetadata.punter.AddPunterLimitsTask;
 import ru.splat.messages.uptm.trmetadata.punter.CancelPunterLimitsTask;
 
@@ -35,28 +35,28 @@ public  class ProtobufFactory{
                 .collect(Collectors.toSet());
         Message message;
         //для BetService
-        if (localTask instanceof AddBetTask) {
-            AddBetTask task = (AddBetTask)localTask;
+        if (localTask instanceof AddTicketOrderTask) {
+            AddTicketOrderTask task = (AddTicketOrderTask)localTask;
             //BetRequest.Bet message;
-            Set betOutcomes = (task.getBetOutcomes().stream()
+            Set betOutcomes = (task.getTicketDetails().stream()
                     .map(betOutcome ->  BetRequest.Bet.BetOutcome.newBuilder()
                                 .setCoefficient(betOutcome.getCoefficient())
                                 .setEventId(betOutcome.getEventId())
-                                .setId(betOutcome.getOutcomeId())
+                                .setId(betOutcome.getSeatId())
                                 .build()
                     ).collect(Collectors.toSet()));
             BetRequest.Bet.Builder builder = BetRequest.Bet.newBuilder()
                     .setLocalTask(task.getType().ordinal())
                     .setPunterId(task.getPunterId())
                     .setTime(localTask.getTime())
-                    //.setId(((AddBetTask)localTask).getBetId())
+                    //.setId(((AddTicketOrderTask)localTask).getBetId())
                     .addAllBetOutcome(betOutcomes)   //неверно
                     .addAllServices(services);
             message = builder.build();
             return message;
         }
-        if (localTask instanceof FixBetTask) {
-            FixBetTask task = (FixBetTask)localTask;
+        if (localTask instanceof FixTicketOrderTask) {
+            FixTicketOrderTask task = (FixTicketOrderTask)localTask;
             //BetRequest.Bet message;
             BetRequest.Bet.Builder builder = BetRequest.Bet.newBuilder()
                     .setLocalTask(task.getType().ordinal())
@@ -81,8 +81,8 @@ public  class ProtobufFactory{
             return message;
         }
         //EventService tasks
-        if (localTask instanceof AddSelectionLimitsTask) {
-            AddSelectionLimitsTask task = (AddSelectionLimitsTask)localTask;
+        if (localTask instanceof ReserveSeatTask) {
+            ReserveSeatTask task = (ReserveSeatTask)localTask;
             Message.Builder builder = EventRequest.Event.newBuilder()
                     .setLocalTask(task.getType().ordinal())
                     .setTime(localTask.getTime())
@@ -114,8 +114,8 @@ public  class ProtobufFactory{
             message = builder.build();
             return message;
         }
-        if (localTask instanceof CancelBetTask) {
-            CancelBetTask task = (CancelBetTask)localTask;
+        if (localTask instanceof CancelTicketOrderTask) {
+            CancelTicketOrderTask task = (CancelTicketOrderTask)localTask;
             //BetRequest.Bet message;
             BetRequest.Bet.Builder builder = BetRequest.Bet.newBuilder()
                     .setLocalTask(task.getType().ordinal())
@@ -125,8 +125,8 @@ public  class ProtobufFactory{
             message = builder.build();
             return message;
         }
-        if (localTask instanceof CancelSelectionLimitsTask) {
-            CancelSelectionLimitsTask task = (CancelSelectionLimitsTask)localTask;
+        if (localTask instanceof CancelReserveSeatTask) {
+            CancelReserveSeatTask task = (CancelReserveSeatTask)localTask;
             Message.Builder builder = EventRequest.Event.newBuilder()
                     .setLocalTask(task.getType().ordinal())
                     .addAllSelections(task.getSelections())

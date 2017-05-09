@@ -66,7 +66,7 @@ public class IdGenerator extends LoggingActor {
         } else {
             Bounds bounds = getIndexes();
             Transaction transaction = builder()
-                    .betInfo(message.getBetInfo())
+                    .betInfo(message.getTicketInfo())
                     .state(State.CREATED)
                     .lower(bounds.getLowerBound())
                     .upper(bounds.getUpperBound())

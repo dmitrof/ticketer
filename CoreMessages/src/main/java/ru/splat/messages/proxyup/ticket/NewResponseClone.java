@@ -1,4 +1,4 @@
-package ru.splat.messages.proxyup.bet;
+package ru.splat.messages.proxyup.ticket;
 
 
 public class NewResponseClone

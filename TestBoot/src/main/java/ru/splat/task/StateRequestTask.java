@@ -1,13 +1,11 @@
 package ru.splat.task;
 
 import org.apache.log4j.Logger;
-import ru.splat.messages.proxyup.bet.NewResponse;
-import ru.splat.messages.proxyup.bet.NewResponseClone;
+import ru.splat.messages.proxyup.ticket.NewResponseClone;
 import ru.splat.messages.proxyup.check.CheckResult;
 import ru.splat.service.StateCheckService;
 import java.util.Iterator;
 import java.util.concurrent.*;
-import java.util.function.Supplier;
 
 /**
  * Created by Дмитрий & Ильнар on 10.02.2017.

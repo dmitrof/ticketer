@@ -2,12 +2,10 @@ package ru.splat.task;
 
 
 import org.apache.log4j.Logger;
-import ru.splat.messages.proxyup.bet.NewResponseClone;
+import ru.splat.messages.proxyup.ticket.NewResponseClone;
 import ru.splat.service.BootService;
-import java.util.concurrent.CompletableFuture;
+
 import java.util.concurrent.ConcurrentSkipListSet;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 
 public class RequestTask implements Runnable {

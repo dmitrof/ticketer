@@ -6,11 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.splat.Proxy;
 import ru.splat.UP;
-import ru.splat.messages.proxyup.bet.BetInfo;
-import ru.splat.messages.proxyup.bet.NewResponse;
+import ru.splat.messages.proxyup.ticket.TicketInfo;
+import ru.splat.messages.proxyup.ticket.NewResponse;
 import ru.splat.mvc.features.ReposResult;
 import ru.splat.mvc.service.ShowEvents;
-import javax.annotation.PostConstruct;
 
 
 @Controller
@@ -46,12 +45,13 @@ public class BetController
 
     @RequestMapping(value = "/dobet", method = RequestMethod.POST)
     public @ResponseBody
-    NewResponse getTransactionId(@RequestBody BetInfo betInfo) throws Exception
+    NewResponse getTransactionId(@RequestBody TicketInfo ticketInfo) throws Exception
     {
-        NewResponse newResponse = proxy.sendNewRequest(betInfo);
-        LOGGER.info("/dobet request: " + betInfo.toString() + " response: " + newResponse.toString());
+        LOGGER.info(ticketInfo.toString());
+        NewResponse newResponse = proxy.sendNewRequest(ticketInfo);
+        //LOGGER.info("/dobet request: " + ticketInfo.toString() + " response: " + newResponse.toString());
         return newResponse;
-//        return new NewResponse(betInfo.getUserId());
+//        return new NewResponse(ticketInfo.getUserId());
     }
 
     @RequestMapping(value = "/checkbet", method = RequestMethod.GET)

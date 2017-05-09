@@ -1,4 +1,4 @@
-package ru.splat.messages.bet;
+package ru.splat.messages.ticket;
 
 /**
  * Created by Дмитрий on 10.02.2017.

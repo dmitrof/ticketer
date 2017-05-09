@@ -1,8 +1,8 @@
-package ru.splat.messages.uptm.trmetadata.bet;
+package ru.splat.messages.uptm.trmetadata.ticket;
 
 import ru.splat.messages.conventions.ServicesEnum;
 import ru.splat.messages.conventions.TaskTypesEnum;
-import ru.splat.messages.proxyup.bet.BetInfo;
+import ru.splat.messages.proxyup.ticket.TicketInfo;
 import ru.splat.messages.uptm.trmetadata.LocalTask;
 
 import java.util.Set;
@@ -11,23 +11,23 @@ import java.util.Set;
  * Created by Дмитрий on 22.12.2016.
  */
 //первая фаза по ставкам
-public class AddBetTask extends LocalTask {
+public class AddTicketOrderTask extends LocalTask {
     private final Integer punterId;
-    private final Set<BetOutcome> betOutcomes; //список возможных исходов
+    private final Set<TicketDetail> ticketDetails; //список возможных исходов
 
     public Integer getPunterId() {
         return punterId;
     }
 
-    public Set<BetOutcome> getBetOutcomes() {
-        return betOutcomes;
+    public Set<TicketDetail> getTicketDetails() {
+        return ticketDetails;
     }
 
     //конструктор первой фазы
-    public AddBetTask(Integer punterId, Set<BetOutcome> betOutcomes, Long time) {
+    public AddTicketOrderTask(Integer punterId, Set<TicketDetail> ticketDetails, Long time) {
         super(time);
         this.punterId = punterId;
-        this.betOutcomes = betOutcomes;
+        this.ticketDetails = ticketDetails;
     }
 
 
@@ -42,17 +42,17 @@ public class AddBetTask extends LocalTask {
     }
 
 
-    public static AddBetTask create(BetInfo betInfo) {
-        return new AddBetTask(betInfo.getUserId(),
-                betInfo.getBetOutcomes(),
+    public static AddTicketOrderTask create(TicketInfo ticketInfo) {
+        return new AddTicketOrderTask(ticketInfo.getUserId(),
+                ticketInfo.getTicketDetails(),
                 System.currentTimeMillis());
     }
 
     @Override
     public String toString() {
-        return "AddBetTask{" +
+        return "AddTicketOrderTask{" +
                 "punterId=" + punterId +
-                ", betOutcomes=" + betOutcomes +
+                ", ticketDetails=" + ticketDetails +
                 "} ";
     }
 }

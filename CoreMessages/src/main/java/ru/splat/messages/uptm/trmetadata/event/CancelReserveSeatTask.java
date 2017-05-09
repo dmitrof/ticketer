@@ -2,7 +2,7 @@ package ru.splat.messages.uptm.trmetadata.event;
 
 import ru.splat.messages.conventions.ServicesEnum;
 import ru.splat.messages.conventions.TaskTypesEnum;
-import ru.splat.messages.proxyup.bet.BetInfo;
+import ru.splat.messages.proxyup.ticket.TicketInfo;
 import ru.splat.messages.uptm.trmetadata.LocalTask;
 
 import java.util.Set;
@@ -10,11 +10,11 @@ import java.util.Set;
 /**
  * Created by Дмитрий on 04.02.2017.
  */
-public class CancelSelectionLimitsTask extends LocalTask {
+public class CancelReserveSeatTask extends LocalTask {
     private final Set<Integer> selections;
     private final ServicesEnum service = ServicesEnum.EventService;
 
-    public CancelSelectionLimitsTask(
+    public CancelReserveSeatTask(
             Set<Integer> selections, Long time) {
         super(time);
         this.selections = selections;
@@ -34,13 +34,13 @@ public class CancelSelectionLimitsTask extends LocalTask {
         return selections;
     }
 
-    public static CancelSelectionLimitsTask create(BetInfo betInfo) {
-        return new CancelSelectionLimitsTask(betInfo.getSelectionsId(), System.currentTimeMillis());
+    public static CancelReserveSeatTask create(TicketInfo ticketInfo) {
+        return new CancelReserveSeatTask(ticketInfo.getSelectionsId(), System.currentTimeMillis());
     }
 
     @Override
     public String toString() {
-        return "CancelSelectionLimitsTask{" +
+        return "CancelReserveSeatTask{" +
                 "selections=" + selections +
                 ", service=" + service +
                 "} ";

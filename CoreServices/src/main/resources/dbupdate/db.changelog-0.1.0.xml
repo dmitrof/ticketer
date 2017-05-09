@@ -54,7 +54,7 @@
                                  referencedTableName="event"/>
 
 
-        <createTable tableName="outcome">
+        <createTable tableName="seat">
             <column name="id" type="integer"/>
             <column name="name" type="character varying(250)"/>
             <column name="current_koef" type="double"/>
@@ -64,10 +64,10 @@
             <column name="limit_time" type="bigint"/>
         </createTable>
 
-        <addPrimaryKey tableName="outcome" columnNames="id"/>
+        <addPrimaryKey tableName="seat" columnNames="id"/>
 
         <addForeignKeyConstraint baseColumnNames="place_id"
-                                 baseTableName="outcome"
+                                 baseTableName="seat"
                                  constraintName="fk_place_id"
                                  deferrable="true"
                                  initiallyDeferred="true"
@@ -77,19 +77,19 @@
                                  referencedTableName="place"/>
 
         <createTable tableName="history_of_koef">
-            <column name="outcome_id" type="integer"/>
+            <column name="seat_id" type="integer"/>
             <column name="koef" type="double"/>
         </createTable>
 
-        <addForeignKeyConstraint baseColumnNames="outcome_id"
+        <addForeignKeyConstraint baseColumnNames="seat_id"
                                  baseTableName="history_of_koef"
-                                 constraintName="fk_outcome_id"
+                                 constraintName="fk_seat_id"
                                  deferrable="true"
                                  initiallyDeferred="true"
                                  onDelete="RESTRICT"
                                  onUpdate="RESTRICT"
                                  referencedColumnNames="id"
-                                 referencedTableName="outcome"/>
+                                 referencedTableName="seat"/>
 
         <createTable tableName="event_idemp">
             <column name="transaction_id" type="bigint"/>

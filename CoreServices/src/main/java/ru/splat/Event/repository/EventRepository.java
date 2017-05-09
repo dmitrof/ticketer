@@ -32,7 +32,7 @@ public class EventRepository implements LimitRepository
         };
 
         String SQL_SELECT_OUTCOME_LIMITS = "SELECT id, lim, limit_time" +
-                " FROM outcome WHERE id IN (?)";
+                " FROM seat WHERE id IN (?)";
         return  jdbcTemplate.query(
                 PunterUtil.addSQLParametrs(outcomesId.size(), SQL_SELECT_OUTCOME_LIMITS), rm, outcomesId.toArray()
         );
@@ -42,7 +42,7 @@ public class EventRepository implements LimitRepository
     @Override
     public void updateLimit(Limit limit)
     {
-        String SQL_CANCEL_BET = "UPDATE outcome SET lim = ?, limit_time = ? where id = ?";
+        String SQL_CANCEL_BET = "UPDATE seat SET lim = ?, limit_time = ? where id = ?";
         jdbcTemplate.update(SQL_CANCEL_BET,limit.getLimit(),limit.getLimitTime(),limit.getId());
     }
 

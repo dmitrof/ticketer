@@ -137,7 +137,7 @@ public class PhaserActor extends LoggingActor {
 
     private static void updateBetId(TransactionState o, Transaction transaction) {
         Long betId = (Long) o.getLocalStates().get(ServicesEnum.BetService).getAttachment();
-        transaction.getBetInfo().setBetId(betId);
+        transaction.getTicketInfo().setBetId(betId);
     }
 
     private void saveDBWithState(Transaction.State state, ru.splat.db.Procedure after) {

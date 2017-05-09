@@ -60,7 +60,7 @@ public class EventRepository
             return outcomeInfo;
         };
 
-        String SQL_SELECT_PUNTER_LIMITS = "SELECT outcome.id, outcome.name, outcome.current_koef, outcome.place_id FROM outcome WHERE place_id="+market_id;
+        String SQL_SELECT_PUNTER_LIMITS = "SELECT seat.id, seat.name, seat.current_koef, seat.place_id FROM seat WHERE place_id="+market_id;
         return  jdbcTemplate.query(SQL_SELECT_PUNTER_LIMITS, rm);
     }
 

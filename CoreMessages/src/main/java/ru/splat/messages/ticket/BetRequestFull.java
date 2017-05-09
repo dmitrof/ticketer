@@ -1,4 +1,4 @@
-package ru.splat.messages.bet;
+package ru.splat.messages.ticket;
 
 import java.util.Map;
 

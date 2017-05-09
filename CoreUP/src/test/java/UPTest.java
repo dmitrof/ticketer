@@ -5,7 +5,7 @@
 //import org.junit.Test;
 //import ru.splat.UP;
 //import ru.splat.messages.proxyup.ProxyUPMessage;
-//import ru.splat.messages.proxyup.bet.BetInfo;
+//import ru.splat.messages.proxyup.bet.TicketInfo;
 //import ru.splat.messages.proxyup.bet.NewRequest;
 //import ru.splat.messages.proxyup.bet.NewResponse;
 //
@@ -53,11 +53,11 @@
 //    }
 //
 //    private ProxyUPMessage testRequest(Integer userId) {
-//        BetInfo requestInfo = new BetInfo();
+//        TicketInfo requestInfo = new TicketInfo();
 //        requestInfo.setUserId(userId);
 //        requestInfo.setBet(2);
 //        requestInfo.setSelectionsId(new HashSet<>());
-//        requestInfo.setBetOutcomes(new HashSet<>());
+//        requestInfo.setTicketDetails(new HashSet<>());
 //        return new NewRequest(requestInfo);
 //    }
 //}

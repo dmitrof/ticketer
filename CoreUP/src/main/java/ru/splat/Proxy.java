@@ -6,13 +6,13 @@ import akka.pattern.Patterns;
 import akka.util.Timeout;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.splat.messages.proxyup.bet.BetInfo;
-import ru.splat.messages.proxyup.bet.NewRequest;
-import ru.splat.messages.proxyup.bet.NewResponse;
+import ru.splat.messages.proxyup.ticket.TicketInfo;
+import ru.splat.messages.proxyup.ticket.NewRequest;
+import ru.splat.messages.proxyup.ticket.NewResponse;
 import ru.splat.messages.proxyup.check.CheckRequest;
 import ru.splat.messages.proxyup.check.CheckResponse;
 import ru.splat.messages.proxyup.check.CheckResult;
-import ru.splat.messages.uptm.trmetadata.bet.BetOutcome;
+import ru.splat.messages.uptm.trmetadata.ticket.TicketDetail;
 import scala.concurrent.Await;
 import scala.concurrent.Future;
 
@@ -32,12 +32,13 @@ public class Proxy {
         this.up = up;
     }
 
-    public NewResponse sendNewRequest(BetInfo betInfo) throws Exception {
-        betInfo.setSelectionsId(betInfo.getBetOutcomes().stream().map(BetOutcome::getOutcomeId)
+    public NewResponse sendNewRequest(TicketInfo ticketInfo) throws Exception {
+        LOGGER.info(ticketInfo.toString());
+        ticketInfo.setSelectionsId(ticketInfo.getTicketDetails().stream().map(TicketDetail::getSeatId)
                 .collect(Collectors.toSet()));
-        NewRequest newRequest = new NewRequest(betInfo);
+        NewRequest newRequest = new NewRequest(ticketInfo);
 
-        return (NewResponse) getRequestResult(betInfo.getUserId(), newRequest,
+        return (NewResponse) getRequestResult(ticketInfo.getUserId(), newRequest,
                 m -> "Response for NewRequest received: " + m.toString());
     }
 

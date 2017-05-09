@@ -9,7 +9,6 @@ import ru.splat.facade.service.ServiceFacade;
 import ru.splat.facade.feautures.TransactionRequest;
 import ru.splat.kafka.Kafka;
 import ru.splat.kafka.feautures.TransactionResult;
-import ru.splat.messages.proxyup.bet.NewResponseClone;
 
 import javax.annotation.PostConstruct;
 import java.util.*;

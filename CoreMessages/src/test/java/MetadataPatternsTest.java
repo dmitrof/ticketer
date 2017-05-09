@@ -1,12 +1,12 @@
 //import org.junit.Test;
 //import ru.splat.messages.Transaction;
 //import ru.splat.messages.conventions.ServiceResult;
-//import ru.splat.messages.proxyup.bet.BetInfo;
+//import ru.splat.messages.proxyup.bet.TicketInfo;
 //import ru.splat.messages.uptm.trmetadata.LocalTask;
 //import ru.splat.messages.uptm.trmetadata.MetadataPatterns;
 //import ru.splat.messages.uptm.trmetadata.TransactionMetadata;
-//import ru.splat.messages.uptm.trmetadata.bet.CancelBetTask;
-//import ru.splat.messages.uptm.trmetadata.bet.FixBetTask;
+//import ru.splat.messages.uptm.trmetadata.bet.CancelTicketOrderTask;
+//import ru.splat.messages.uptm.trmetadata.bet.FixTicketOrderTask;
 //import ru.splat.messages.uptm.trmetadata.billing.CancelWithdrawTask;
 //import ru.splat.messages.uptm.trstate.ServiceResponse;
 //import ru.splat.messages.uptm.trstate.TransactionState;
@@ -27,7 +27,7 @@
 //public class MetadataPatternsTest {
 //    @Test
 //    public void testPhase2() {
-//        TransactionMetadata expected = new TransactionMetadata(1L, singletonList(FixBetTask.create(testBetInfo())));
+//        TransactionMetadata expected = new TransactionMetadata(1L, singletonList(FixTicketOrderTask.create(testBetInfo())));
 //        TransactionMetadata real = MetadataPatterns.createPhase2(testTransaction(testBetInfo()));
 //
 //        compareMetadata(expected, real);
@@ -38,7 +38,7 @@
 //        List<LocalTask> tasks = new ArrayList<>();
 //
 //        tasks.add(CancelWithdrawTask.create(testBetInfo()));
-//        tasks.add(CancelBetTask.create(testBetInfo()));
+//        tasks.add(CancelTicketOrderTask.create(testBetInfo()));
 //
 //        TransactionMetadata expected = new TransactionMetadata(1L, tasks);
 //        TransactionMetadata real = MetadataPatterns.createCancel(testTransaction(testBetInfo()), testState());
@@ -71,10 +71,10 @@
 //        return new ServiceResponse<>("test", ServiceResult.DENIED);
 //    }
 //
-//    private static Transaction testTransaction(BetInfo betInfo) {
+//    private static Transaction testTransaction(TicketInfo betInfo) {
 //        Transaction transaction = new Transaction();
 //        transaction.setState(CREATED);
-//        transaction.setBetInfo(betInfo);
+//        transaction.setTicketInfo(betInfo);
 //        transaction.setLowerBound(0L);
 //        transaction.setUpperBound(50L);
 //        transaction.setCurrent(1L);
@@ -82,12 +82,12 @@
 //        return transaction;
 //    }
 //
-//    private static BetInfo testBetInfo() {
-//        BetInfo betInfo = new BetInfo();
+//    private static TicketInfo testBetInfo() {
+//        TicketInfo betInfo = new TicketInfo();
 //        betInfo.setBetId(1L);
 //        betInfo.setBet(20);
 //        betInfo.setSelectionsId(new HashSet<>());
-//        betInfo.setBetOutcomes(new HashSet<>());
+//        betInfo.setTicketDetails(new HashSet<>());
 //
 //        return betInfo;
 //    }

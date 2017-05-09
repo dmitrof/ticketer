@@ -1,17 +1,12 @@
 package ru.splat.service;
 
 import com.google.gson.Gson;
-import ru.splat.messages.proxyup.bet.NewResponse;
-import ru.splat.messages.proxyup.bet.NewResponseClone;
+import ru.splat.messages.proxyup.ticket.NewResponseClone;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.concurrent.Callable;
-import java.util.function.Supplier;
 
 /**
  * Created by Дмитрий on 10.02.2017.

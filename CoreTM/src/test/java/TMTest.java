@@ -8,9 +8,9 @@
 //import ru.splat.messages.Response;
 //import ru.splat.messages.conventions.ServicesEnum;
 //import ru.splat.messages.uptm.trmetadata.*;
-//import ru.splat.messages.uptm.trmetadata.bet.AddBetTask;
-//import ru.splat.messages.uptm.trmetadata.bet.BetOutcome;
-//import ru.splat.messages.uptm.trmetadata.bet.FixBetTask;
+//import ru.splat.messages.uptm.trmetadata.bet.AddTicketOrderTask;
+//import ru.splat.messages.uptm.trmetadata.bet.TicketDetail;
+//import ru.splat.messages.uptm.trmetadata.bet.FixTicketOrderTask;
 //import ru.splat.messages.uptm.trstate.ServiceResponse;
 //import ru.splat.tm.LoggerGlobal;
 //import ru.splat.tm.actors.*;
@@ -42,9 +42,9 @@
 //    }
 //
 //    public void testBetProtobufP1() throws Exception {
-//        Set<BetOutcome> betOutcomes = new HashSet<>();
-//        betOutcomes.add(new BetOutcome(1, 2, 1, 3.14));
-//        LocalTask bet1 = new AddBetTask(1, betOutcomes, System.currentTimeMillis());
+//        Set<TicketDetail> betOutcomes = new HashSet<>();
+//        betOutcomes.add(new TicketDetail(1, 2, 1, 3.14));
+//        LocalTask bet1 = new AddTicketOrderTask(1, betOutcomes, System.currentTimeMillis());
 //        BetRequest.Bet betMessage = (BetRequest.Bet) ProtobufFactory.buildProtobuf(bet1, services);
 //        assertEquals(betMessage.getPunterId(), 1);
 //        Set<Integer> servicesOut = new HashSet<Integer>(betMessage.getServicesList());
@@ -52,7 +52,7 @@
 //    }
 //
 //    public void testBetProtobufP2() throws Exception{
-//        LocalTask bet1 = new FixBetTask(1L, System.currentTimeMillis());
+//        LocalTask bet1 = new FixTicketOrderTask(1L, System.currentTimeMillis());
 //        BetRequest.Bet betMessage = (BetRequest.Bet) ProtobufFactory.buildProtobuf(bet1, services);
 //        assertEquals(betMessage.getId(), 1L);
 //        assertTrue(betMessage.getBetOutcomeList().isEmpty());

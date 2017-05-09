@@ -1,19 +1,19 @@
-package ru.splat.messages.uptm.trmetadata.bet;
+package ru.splat.messages.uptm.trmetadata.ticket;
 
 /**
  * Created by Дмитрий on 01.02.2017.
  */
-public class BetOutcome {
-    private Integer outcomeId;
+public class TicketDetail {
+    private Integer seatId;
     private Integer eventId;
     private Double coefficient;
     private Integer marketId;
 
-    public BetOutcome() {
+    public TicketDetail() {
     }
 
-    public BetOutcome(Integer marketId, Integer eventId, Integer outcomeId, Double coefficient) {
-        this.outcomeId = outcomeId;
+    public TicketDetail(Integer marketId, Integer eventId, Integer seatId, Double coefficient) {
+        this.seatId = seatId;
         this.eventId = eventId;
         this.coefficient = coefficient;
         this.marketId = marketId;
@@ -21,16 +21,16 @@ public class BetOutcome {
 
     @Override
     public String toString() {
-        return "BetOutcome{" +
-                "outcomeId=" + outcomeId +
+        return "TicketDetail{" +
+                "seatId=" + seatId +
                 ", eventId=" + eventId +
                 ", coefficient=" + coefficient +
                 ", marketId=" + marketId +
                 '}';
     }
 
-    public Integer getOutcomeId() {
-        return outcomeId;
+    public Integer getSeatId() {
+        return seatId;
     }
     public Integer getEventId() {
         return eventId;
@@ -43,8 +43,8 @@ public class BetOutcome {
         return marketId;
     }
 
-    public void setOutcomeId(Integer outcomeId) {
-        this.outcomeId = outcomeId;
+    public void setSeatId(Integer outcomeId) {
+        this.seatId = outcomeId;
     }
 
     public void setEventId(Integer eventId) {
