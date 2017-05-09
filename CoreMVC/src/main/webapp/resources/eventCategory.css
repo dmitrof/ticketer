@@ -1,10 +1,12 @@
 .event-section{
-    background-color: gold;
+    background-color: lightblue;
     margin: 50px 10px;
+    border: 1px solid;
 }
 .event-name{
-    background-color: aqua;
+    background-color: lightgray;
     text-align: center;
+    border: 1px solid;
 }
 .market-section{
     display: inline-block;

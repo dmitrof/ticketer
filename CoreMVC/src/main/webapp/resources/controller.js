@@ -11,7 +11,7 @@ function TicketDetail(marketId, eventId, seatId, price) {
 }
 
 var app = angular.module('myApp', []);
-app.controller('customersCtrl', function ($http, $interval, $timeout) {
+app.controller('customersCtrl', function ($scope, $http, $interval, $timeout) {
     var ctrl = this;
     ctrl.sum = 0;
     ctrl.userId = 0;
@@ -21,11 +21,21 @@ app.controller('customersCtrl', function ($http, $interval, $timeout) {
 
     ctrl.betStatus = ["Sucessefull", "Fail"];
 
+    $scope.dropselects = function(event) {
+        //alert(event.target.id);
+        elements = document.getElementsByClassName("seat-select");
+        for (var i = 0; i < elements.length; i++) {
+            //console.log(i);
+            if (elements[i].id != event.target.id)
+                elements[i].selectedIndex = -1;
+        }
+    };
+
     $http.get("/SpringMVC/init").then(function (response) {
         ctrl.languageSettings = response.data;
     });
 
-
+    
 
     ctrl.buttonClick = function () {
         var stop;
@@ -81,3 +91,4 @@ app.controller('customersCtrl', function ($http, $interval, $timeout) {
         });
     }
 });
+
